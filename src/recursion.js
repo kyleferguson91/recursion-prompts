@@ -46,17 +46,34 @@ else {
 // arraySum([1,[2,3],[[4]],5]); // 15
 
 var arraySum = function(array) {
-
+    if (array.length == 0) {
+        return 0
+    }
+let output = []
     //Break the problem I am trying to solve down into a problem that is one step simpler
    // Assume that my function will work to solve the simpler problem — really believe it beyond any doubt
    // base case, if array is length 1 and an integer, return the integer!
- 
-   
+ for (let item of array) {
+    if (Array.isArray(item)) {
+        // output is now equal to what it was before, added on to it
+        // the result of calling the function again on the array like item
+        output = output.concat(arraySum(item))
+        }
 
-
+        else {
+            // item is not array like and gets added to the output!
+            output = output.concat(item)
+            
+        }
+    
+ }
+ // base case is when we reach the last item..
+ return output.reduce((prev,cur) => {
+    return prev+cur
+ })
 
 };
-arraySum([1,[2,3],[[4]],5])
+
 
 
 
@@ -123,22 +140,31 @@ return n + sumBelow(n)
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+ 
+y = y - 1 
+    // base case can return function immediately..
+    // simplest case is when x == y return nothing, no range.
+    if (x == y) {
+        console.log('at base', x)
+        // base case returns an array, from there we push each x value onto it up the chain
+        return []
+    }
+    // 1 step simpler - assume it will solve this problem, 1 step closer to y!
+    else {
+        
+        
+        // but we need to push this x value to an output arr.. and call the function with the 
+        // array equal to the previous call result..
+        // this step is the key, when we recurse, the array is equal to..
+        // the current array with the result of the next call added on
+  return range(x,y).concat(y)
+    }
     
-    
-// break the problem down into one step simpler..
-// a problem one step simpler would be a number one closer to end of
-// the range
-// base casse would be when we reach the number (end of range)
-
-
-
-
-
-// a problem one step simpler, is number one closer to the range..
-
+ 
 
 };
 
+console.log(range(2,9))
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
