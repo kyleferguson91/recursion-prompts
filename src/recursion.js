@@ -7,31 +7,136 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+
+    // base case, n == 1
+    if (n == 1 || n == 0) {
+        return 1
+    }
+    else if (n < 0) {return null}
+    // solve one step simpler..
+    else {
+        return n * factorial(n-1)
+    }
+
+
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+
+// break the problem down into one step simpler..
+// a problem one step simpler would be an array one element shorter..
+// base case would be when array has length 0
+
+if (array.length == 0) {
+    return 0
+}
+else {
+    // one step simpler..
+    return sum(array.slice(1)) + array[0]
+}
+
+ 
+
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+
 var arraySum = function(array) {
+
+    //Break the problem I am trying to solve down into a problem that is one step simpler
+   // Assume that my function will work to solve the simpler problem — really believe it beyond any doubt
+   // base case, if array is length 1 and an integer, return the integer!
+ 
+   
+
+
+
 };
+arraySum([1,[2,3],[[4]],5])
+
+
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+
+// break the problem down into one step simpler..
+// a problem one step simpler would be an array one element shorter..
+// base case would be when n == 1 or n == 2
+// base case if we reduce to 1, its not even
+if (n == 1){
+    return false
+}
+// if we reduce to 0, it is even
+else if (n == 0) {
+    return true
+}
+// for negative numebrs add 2.. eventually reach -1 or 0
+else if (n < 0) {
+    return isEven(n+2)
+}
+// for positive numbers minus 2, eventually reach 1 or 0!
+else {
+    return isEven(n-2)
+}
+
+
+
+
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+
+// start at n == n - 1
+// 1 2 3 4 5 6 7 8 9
+// base case is when we reach n == 0
+if (n == 0) {
+    return 0
+}
+n < 0 ?  n+=1 : n-=1
+// how do we make the problem one step simpler..
+// one number smaller..
+ {
+return n + sumBelow(n)
+}
+
+
+
 };
+
+
+
+
+
+
+
+
+
+
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+    
+    
+// break the problem down into one step simpler..
+// a problem one step simpler would be a number one closer to end of
+// the range
+// base casse would be when we reach the number (end of range)
+
+
+
+
+
+// a problem one step simpler, is number one closer to the range..
+
+
 };
 
 // 7. Compute the exponent of a number.
