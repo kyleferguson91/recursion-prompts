@@ -403,26 +403,38 @@ else {
 // when we have one negative
 
 var modulo = function(x, y) {
+console.log(x,y)
 
-
-   
-
- if (x === 0 && y === 0 ) {
-    return NaN
-}
-else if ( x === 0) {
-    return 0
-}
-else if (x > 0) {
+    if (x === 0 && y === 0) {
+        return NaN
+    }
+    else if (x === 0) {
+        return 0
+    }
     
-   return modulo(x - y, y)
-}
-else if (x < 0) {
+ 
 
-return x + y
-}
+    if (x < 0) {
+       
+        if (y < 0) {y = -y}
+       
+        if (-x < y) {return x}
+        
+         if (-x < y) {return x}
+         
+
+        return modulo(x + y, y)
+        
+    }
+    else if (x > 0) {
+        
+        if (y < 0) {y = -y}
+        else if (x < y) {return x}
+        return modulo(x - y, y)
+    }
 
    
+
 
 
 
@@ -430,7 +442,7 @@ return x + y
 };
 
 
-console.log(modulo(22,6))
+//console.log(modulo(-10,-3))
 
 
 
@@ -446,11 +458,31 @@ console.log(modulo(22,6))
 // well bring y one step closer to 1..
 // and return the number so we can add..
 var multiply = function(x, y) {
-if (y == 1) {
-    return x
+    if (x === 0 && y === 0 ) {return 0}
+    else if (y === 1 || y === -1) {
+        
+    if (y > 0) {
+        return x
+    }
+    else {
+        return -x
+    }
 }
 else {
-    return x + multiply(x, y-1)
+    if (y < 0 && x < 0) {
+        if (y < 0 ) {y = -y}
+        return -x + multiply(-x, y-1)
+    }
+    else if (y < 0 && x > 0) {
+
+      
+            return -x - multiply(-x, y+1)
+ 
+    }
+  
+   else  {
+        return x + multiply(x, y-1) 
+    }
 }
     
 
@@ -460,31 +492,169 @@ else {
 
 
 
+//must have:
+//   - base case in which the function can return the result immediately
 
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem that is one step simpler
+ //      // Assume that my function will work to solve the simpler problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, how would i solve the more //complex one 
+ //   
+//
+//
 
 
 
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
+// making problem one step simpler would be bringing it one step closer to 0
+// or to 1.. 
 var divide = function(x, y) {
+if (x == 0 && y == 0) {return NaN}
+    if (x < 0 && y < 0) {
+        x = -x
+        y = -y
+    }
+
+    if (x < 0 && y > 0)
+    {
+        if (x < y) {return 0}
+        if (x < 0) { x = -x}
+        return -1 - divide(x-y,y)
+
+    }
+    if (x > 0 && y < 0) {
+       
+        if (y < 0) {y = -y} 
+        return -1 - divide(x-y, y)
+    }
+
+  if (x < y) {
+    return 0
+  }
+
+  else {
+    return 1 + divide(x-y, y)
+  }
+
+
 };
+//console.log(divide(10,-4))
+
+
+
+
+
+
+
+
+
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
 // gcd(4,36); // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem that is one step simpler
+ //      // Assume that my function will work to solve the simpler problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, how would i solve the more //complex one 
+ //   
+//
+//
+
+
 var gcd = function(x, y) {
+ //   console.log(y, x)
+    // if we have negative numbers return null..
+if (x < 0 || y < 0) {return null}
+// base case is when we reach 0.. 
+// we will start at y and go until 0..
+if (y == 0) {
+ 
+    return 'hit zero'
+}
+
+if ( x  < y) {return gcd(x, y-1)}
+else if (x > y) {return gcd(x-1, y)}
+else {
+    return gcd(x,y-1)
+}
+
 };
+
+//console.log(gcd(20,10))
+
+
+
+
+
+
+
+
 
 // 15. Write a function that compares each character of two strings and returns true if
 // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //   
+//
+//
+
+
 var compareStr = function(str1, str2) {
+// a problem one step simpler would be a string one letter shorter
+
+// base case, empty string
+if (str1 == '' && str2 == '' ) {return true}
+// base case 2 strings with 1 character, either match or don't
+else if (str1.length === 1 && str2.length === 1) {
+    return str1[0] === str2[0]
+}
+
+// else we recurse and come up with a problem one step shorter
+else {
+
+// first we check char 0..
+if (str1[0] == str2[0]) {
+    // recurse to simpler solution if characters are equal
+    return compareStr(str1.slice(1), str2.slice(1))
+}
+// and if they are not, return false
+else {
+    return false
+}
+
+
+}
+
 };
 
+//console.log(compareStr('cax','cax'))
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str) {
