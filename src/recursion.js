@@ -578,25 +578,36 @@ if (x == 0 && y == 0) {return NaN}
 
 
 var gcd = function(x, y) {
- //   console.log(y, x)
-    // if we have negative numbers return null..
-if (x < 0 || y < 0) {return null}
-// base case is when we reach 0.. 
-// we will start at y and go until 0..
-if (y == 0) {
- 
-    return 'hit zero'
-}
 
-if ( x  < y) {return gcd(x, y-1)}
-else if (x > y) {return gcd(x-1, y)}
-else {
-    return gcd(x,y-1)
+// what is base case
+if (y == 0) {
+    return
+
 }
+else {
+    if (Math.abs(x) >= Math.abs(y)) {
+        console.log(x, 'x')
+
+        return gcd(x-1, y)
+    }
+    else if ((Math.abs(x) < Math.abs(y))) {
+        console.log(y, 'y')
+
+        return gcd(x, y-1)
+    }
+
+ 
+    
+}
+// how do we make it one step simpler..
+// get closer to 0.. 
+
+
+
 
 };
 
-//console.log(gcd(20,10))
+console.log(gcd(20,10))
 
 
 
