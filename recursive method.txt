@@ -19,3 +19,25 @@ is that they try to think about how to break the problem down all the way to the
 I would like to emphasize that in order to develop the function above, 
 I did not think about how I could break the problem down all the way to the base case. 
 That is the function’s job, not yours. 
+
+
+
+Now, for the more challenging part — figuring out how to write the recursive call to accomplish the rest of the task. Let’s go through the thought process that we outlined above:
+
+
+I am trying to reverse a string. A problem one step simpler would be to reverse a string that is one letter shorter.
+I will assume, and believe with every fiber of my being, that my function
+can correctly reverse a string that is one letter shorter than the one I am
+currently trying to reverse.
+
+
+
+I ask myself: Since I know and believe that my function can correctly reverse a string that is one letter shorter than the one I am currently trying to reverse, how can I reverse the whole string? Well, I can take all of the characters except the first one, reverse those (which I know and believe that my function can do), and then tack the first character on to the end! In code, it would look like this:
+
+
+function reverse(string) {
+  // Base case
+  if (string.length < 2) return string;
+  // Recursive case
+  return reverse(string.slice(1, string.length)) + string[0];
+}
