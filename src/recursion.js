@@ -578,23 +578,23 @@ if (x == 0 && y == 0) {return NaN}
 
 
 var gcd = function(x, y) {
+if (x < 0 || y < 0) {return null}
+// base case is when y == 0 or x == 0, start with bigger number..
 
-// what is base case
 if (y == 0) {
-    return
-
+    return x
 }
 else {
-    if (Math.abs(x) >= Math.abs(y)) {
-        console.log(x, 'x')
+    // we call the function recursively with the big divided by small
+    // x is equal to what y is in CURRENT CALL and y is equal to remainder of
+    // big divided by small.. 
+    // 
 
-        return gcd(x-1, y)
-    }
-    else if ((Math.abs(x) < Math.abs(y))) {
-        console.log(y, 'y')
+   
+    return gcd(y,x%y)
 
-        return gcd(x, y-1)
-    }
+}
+
 
  
     
@@ -605,9 +605,9 @@ else {
 
 
 
-};
 
-console.log(gcd(20,10))
+
+console.log(gcd(270,192))
 
 
 
@@ -666,9 +666,28 @@ else {
 };
 
 //console.log(compareStr('cax','cax'))
+
+ 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
+
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //   
+//
+//
 var createArray = function(str) {
+
+
 };
 
 // 17. Reverse the order of an array
