@@ -607,7 +607,7 @@ else {
 
 
 
-console.log(gcd(270,192))
+//console.log(gcd(270,192))
 
 
 
@@ -687,44 +687,304 @@ else {
 //
 var createArray = function(str) {
 
+// what is a problem one step simpler.. a string one step shorter
+// base case would be once the string is empty..
+
+if (str.length == 0) {
+    return []
+}
+else {
+    // otherwise reduce the string length one character at a time..
+    // call the function with the string shorter
+    
+    return [str[0]].concat(createArray(str.slice(1)))
+}
+
 
 };
+//console.log(createArray('cax'))
+
+
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //   
+//
+
+
+// we need to reverse an array.. what would be one step simpler
+// reversing an array one element shorter.. 
+
+// a base case would be when array has no elements, return the array,
+// we get a blank array to append to
+// otherwise we concat to this eventual return value array at 0
+// when we reach base case length 0, which happens as we slice the array
+// closer and closer to nothing
+// and once that returns we concat the array value in the reverse order
+// as the array gets smaller the smaller version (values closer to end)
+// are closer to the top of the stack, so when we start popping off values 
+// we append them in reverse order, to append in same order
+// must concat first!
+if (array.length == 0) {
+    return []
+}
+else {
+     return reverseArr(array.slice(1)).concat(array[0])
+   // return [array[0]].concat(reverseArr(array.slice(1)))
+}
+
+
 };
+
+//console.log(reverseArr([1,2,3]))
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
+
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //    
+
+
+
 var buildList = function(value, length) {
+
+    // how do we make the problem one step simpler.. length closer to 0
+    // one less item to append each time
+    // one less item to append..
+    // what is a good base case, when there are no items to append
+    // or no length..
+
+    if (length == 0) {return []}
+    else {
+        // return the value as an array and concat to that value
+        // the return value of the next function
+        // returns the value in an array and concats the next return value
+        // which is the value in an array again and this continues until 
+        // we reach length 0, at which point we concat final return value
+        // which being an empty array, adds nothing due to concat 
+        return [value].concat(buildList(value,length-1))
+    }
+
 };
+
+//console.log(buildList([],3))
+
+
+
+
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
 // For multiples of three, output 'Fizz' instead of the number.
 // For multiples of five, output 'Buzz' instead of the number.
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
+
+
+
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 var fizzBuzz = function(n) {
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //   
+//we need an array of length 1 to n, to make this one step simpler 
+// we get closer and closer to n.. or to zero.
+// 
+// thus are base case when n == 0
+// return an array when we reach 0
+if (n == 0) {
+    return []
+}
+else {
+    // otherwise push to the array the values we want..
+     if (n % 5 == 0 && n % 3 == 0) {
+        return fizzBuzz(n-1).concat('FizzBuzz')
+       }
+       else if (n % 3 == 0) {
+    
+    return fizzBuzz(n-1).concat('Fizz')
+   }
+   else if (n % 5 == 0) {
+    return fizzBuzz(n-1).concat('Buzz')
+   }
+  
+   else {
+    return fizzBuzz(n-1).concat(n + "")
+   }
+}
+
+
+
+
 };
+
+//console.log(fizzBuzz(15))
+
+ 
+
 
 // 20. Count the occurrence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+//must have:
+//   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //   
+
+ // how do we make the problem one step simpelr
+ // make array one element shorter..
+ // base case is when array is empty.
+
+ if (array.length == 0) {
+    return 0
+ }
+ // else make one step simpler, call it on an array with one less item
+ // which means we can solve the simpler problem (we believe this)
+ // and to solve the more complex problem, we return 1 + the next return value
+ // which will either add one and call the function
+ // not add one and call the function
+ // or return 0 when we reach an empty array!
+ else {
+    if (array[0] === value) {
+        return 1 + countOccurrence(array.slice(1), value)
+    }
+    else {
+        return countOccurrence(array.slice(1), value)
+    }
+ }
+
 };
+
+//console.log(countOccurrence([2,7,4,4,1,4], 4))
+
 
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+
+    //   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   
+ //   
+ //   
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //  
+ // remember map creates a new array, populated with results of calling a 
+ // function on every element in the calling array
+
+ // to make it one step simpler, would be an array one element shorter
+ // base case would be when array is empty, return the array..
+
+ if (array.length == 0) {
+    return []
+ }
+ // else make it one step simpler, array one element shorter..
+  else {
+    
+    // otherwise create an array out of the element ran through the fucnction
+    // and add to this array each time the value of the next function call..
+
+return [callback(array[0])].concat(rMap(array.slice(1), callback))
+  }
+
+
+
 };
+
+//console.log(rMap([1,2,3], (x) => {
+//    return x*2
+//}))
+
+
+
+
 
 // 22. Write a function that counts the number of times a key occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+
+
+ //   - base case in which the function can return the result immediately
+
+ //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
+
+ //   //Break the problem I am trying to solve down into a problem //that is one step simpler
+ //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
+ //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
+ //  
+
+ // base case would be when object length is 0..
+ // or more so when we go through to the deepest levels of nesting..s
+
+for (let key in obj) {
+  
+    // here the key points to another object, so run it into the function again
+if (typeof obj[key] == 'object')
+{
+    console.log(key, obj[key], 'key is object go deeper')  
+    countKeysInObj(obj[key])
+}
+else if (typeof obj[key] == 'string') {
+    // here the key is a string and no need to go deeper..
+    console.log(key, 'key is string, no more object')  
+}
+
+}
+
+
+
 };
+
+ var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+
+    console.log(countKeysInObj(obj, 'r'))
+
+
+
+
+
+
+
 
 // 23. Write a function that counts the number of times a value occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
