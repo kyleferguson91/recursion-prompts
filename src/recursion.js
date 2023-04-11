@@ -938,47 +938,80 @@ return [callback(array[0])].concat(rMap(array.slice(1), callback))
 
 
 // 22. Write a function that counts the number of times a key occurs in an object.
-// var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
-// countKeysInObj(obj, 'r') // 1
-// countKeysInObj(obj, 'e') // 2
-var countKeysInObj = function(obj, key) {
-
-
- //   - base case in which the function can return the result immediately
-
- //   - recursive case: in which the function must call itself to break the problem down to a //simpler level
-
- //   //Break the problem I am trying to solve down into a problem //that is one step simpler
- //      // Assume that my function will work to solve the simpler //problem — really believe it //beyond any doubt
- //       ask myself: since i know i can solve the simpler problem, //how would i solve the more //complex one 
- //  
-
- // base case would be when object length is 0..
- // or more so when we go through to the deepest levels of nesting..s
-
-for (let key in obj) {
-  
-    // here the key points to another object, so run it into the function again
-if (typeof obj[key] == 'object')
-{
-    console.log(key, obj[key], 'key is object go deeper')  
-    countKeysInObj(obj[key])
-}
-else if (typeof obj[key] == 'string') {
-    // here the key is a string and no need to go deeper..
-    console.log(key, 'key is string, no more object')  
-}
-
-}
-
-
-
-};
-
  var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+// countKeysInObj(obj, 'r') // 1 
+// countKeysInObj(obj, 'e') // 2
+
+var countKeysInObj = function(obj, value) {
+let sum = 0
+
+    // we call the function
+    // the easiest thing to do if we have reached the end of the array 
+    // is to return
+if (typeof obj == 'null' || typeof obj === 'undefined') {
+    // we passed in an end, return! otherwise we have object keys values..
+
+   console.log('hittahnull')
+}
+// we start upon a master list.. each call will have its own 
+// function stack execution context 
+let keys = Object.keys(obj)
+if (keys.length == 1 && keys[0] == 0) {
+    return 1
+}
+
+let teed = keys.forEach((elem,ind,arr) => {
+    console.log(arr)
+
+    // now if the element of the keys of the object is another object
+    // we will wanna go through it
+    // and otherwise we will keep doing this until the end
+    console.log(elem, 'elem')
+
+    if (typeof obj[elem] == 'object') {
+        // is this key equal to a value though?
+        if (elem === value) {
+       
+           return 1 + countKeysInObj(obj[elem], value)
+        }
+        else {
+        
+          return 0 +  countKeysInObj(obj[elem], value)
+        }
+    }
+
+    else {
+      
+        // else we don't have an object.. so we can have a base case here where 
+        // we return numbers..
+        if (elem === value) {
+            console.log('doin a return', elem, value)
+            return 1 + countKeysInObj(obj[elem], value)
+        }
+        else {
+        
+            return 0 + countKeysInObj(obj[elem], value)
+        }
+    }
+
+
+})
+
+
+}
+
+
+
+
+   
+
+
+
+//var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y': 'e' };
+// keys are e, t, r, p
 
     console.log(countKeysInObj(obj, 'r'))
-
+  //  console.log(countKeysInObj(obj, 'e'))
 
 
 
