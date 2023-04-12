@@ -952,15 +952,20 @@ let sum = 0
         sum++
      }
      if (typeof objvalue == 'object') {
+        // set sum equal to sum PLUS the return value of calling the function
+        // again, we don't pass count becasue sum starts at 0 for each iteration
+        // this is making the problem one step simpler
         sum += countKeysInObj(obj[key], value)
      }
 
     }
+    // there is no base case, after we iterate over all keys we can finally
+    // return sum
 return sum
 
     }
 
-    console.log(countKeysInObj(obj, 'e'))
+    //console.log(countKeysInObj(obj, 'e'))
 
 
 
@@ -974,7 +979,13 @@ return sum
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+
+
+
+
+    
 };
+
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
