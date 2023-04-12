@@ -973,7 +973,6 @@ for (let key in obj) {
 return sum
 }
    // console.log(countKeysInObj(obj, 'e'))
->>>>>>> deec1581e4eae4ad2fcb3caacfe8f42a6f0b056c
 
 
 
@@ -1041,11 +1040,11 @@ var countValuesInObj = function (obj, value) {
     // object depth.
 
     if (typeof obj != 'object' || obj == null) {
-        console.log('nullobj')
+     //   console.log('nullobj')
     }
     // otherwise figure out keys present..
     let keys = Object.keys(obj)
-    console.log(keys)
+ //   console.log(keys)
 
     // map over this keys array..
     keys.forEach((elem, ind, arr) => {
@@ -1055,7 +1054,7 @@ var countValuesInObj = function (obj, value) {
 
         // obj at elem is equal to another object
         if (typeof obj[elem] == 'object') {
-            console.log(elem)
+        //    console.log(elem)
             sum = sum + countValuesInObj(obj[elem], value)
         }
 
@@ -1069,50 +1068,12 @@ var countValuesInObj = function (obj, value) {
 //console.log(countValuesInObj(obj, 'r'))
 
 
-=======
-    if (typeof obj != 'object' || obj == null) {
-// we are providing a non object value so we cannot run object keys
-// since we are trackin the values of the object, we can compare this
-// and get a return value
-// this is the base case when we reach a non object value
-        if (obj == value) {
 
-            return 1
-        }
-        else {
-            return 0
-        }
-    }
-    // otherwise we have passed in an object get the keys
-    
-const keys = Object.keys(obj) 
-let sum = 0
-// otherwise we reduce it one step simpler by going one higher level of nesting for each key present in object..
-// but we return the new sum being equal to old sum + eventual return value..
-// for each key run it into the function agian
-// it will either not point to an object and return a value or
-// break it down further
-keys.forEach((elem,ind,arr) => {
-    // otherwise we loop through each potential ovject key
-    // and continue for each, returning sum each time
-    // which is equal to the eventual return values of everything
-    // because we broke it down on step simpler each time
-    // closer and closer to a non object, and thought about hwo to solve
-    // the more complex problem which is the sum
-    // and we solve that problem by returing the sum each time
-    // like returning the zeroth index of the string
-    return sum = sum + countValuesInObj(obj[elem], value)
-})
-return sum
-    
-};
 //console.log(countValuesInObj(obj, 'e'))
->>>>>>> deec1581e4eae4ad2fcb3caacfe8f42a6f0b056c
 
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
-<<<<<<< HEAD
 var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y': 'e' };
 
 var replaceKeysInObj = function (obj, oldKey, newKey) {
@@ -1152,17 +1113,6 @@ var replaceKeysInObj = function (obj, oldKey, newKey) {
 
 //console.log(replaceKeysInObj(obj, 'e', 'z'))
 
-=======
-var replaceKeysInObj = function(obj, oldKey, newKey) {
-// how do we make this one step simpler..
-
-if (typeof obj != 'object' || obj = null) {}
-    
-
-};
-
-console.log(replaceKeysInObj(obj, 'e', 't'))
->>>>>>> deec1581e4eae4ad2fcb3caacfe8f42a6f0b056c
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
 // number is the sum of the previous two.
 // Example: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
