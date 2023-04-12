@@ -950,38 +950,6 @@ var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y
 // countKeysInObj(obj, 'r') // 1 
 // countKeysInObj(obj, 'e') // 2
 
-<<<<<<< HEAD
-var countKeysInObj = function (obj, value) {
-    let sum = 0
-    for (let key in obj) {
-        var objvalue = obj[key]
-        if (key == value) {
-            // dont return within the loop or we break the loop
-            // we update sum
-            // this way each branch gets its own sum value that get added below
-
-            sum++
-        }
-        if (typeof objvalue == 'object') {
-            // set sum equal to sum PLUS the return value of calling the function
-            // again, we don't pass count becasue sum starts at 0 for each iteration
-            // this is making the problem one step simpler
-            // again we dont return, this would break loop so we set sum equal to
-            // the current sum plus the value of calling the function down the next
-            // chain of objects..
-            sum += countKeysInObj(obj[key], value)
-        }
-
-    }
-    // there is no base case, after we iterate over all keys we can finally
-    // return sum
-    // finallly at the end, we return sum..
-    return sum
-
-}
-
-//console.log(countKeysInObj(obj, 'e'))
-=======
 var countKeysInObj = function(obj, value) {
 
 // create variable to keep track of sum..
@@ -1025,7 +993,6 @@ return sum
 // check if its equal to the value
 // return the value of 1 if it is and 0 if not
 
-<<<<<<< HEAD
 // for loop solution..
 
 var countValuesInObj2 = function (obj, value) {
