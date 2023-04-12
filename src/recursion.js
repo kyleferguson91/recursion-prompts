@@ -938,80 +938,30 @@ return [callback(array[0])].concat(rMap(array.slice(1), callback))
 
 
 // 22. Write a function that counts the number of times a key occurs in an object.
- var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+  var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+ // obj = {e: 'dog'}
+   // let obj = {e:{ r: '2'}}
 // countKeysInObj(obj, 'r') // 1 
 // countKeysInObj(obj, 'e') // 2
 
 var countKeysInObj = function(obj, value) {
 let sum = 0
+    for (let key in obj) {
+     var objvalue = obj[key]
+     if (key == value) {
+        sum++
+     }
+     if (typeof objvalue == 'object') {
+        sum += countKeysInObj(obj[key], value)
+     }
 
-    // we call the function
-    // the easiest thing to do if we have reached the end of the array 
-    // is to return
-if (typeof obj == 'null' || typeof obj === 'undefined') {
-    // we passed in an end, return! otherwise we have object keys values..
+    }
+return sum
 
-   console.log('hittahnull')
-}
-// we start upon a master list.. each call will have its own 
-// function stack execution context 
-let keys = Object.keys(obj)
-if (keys.length == 1 && keys[0] == 0) {
-    return 1
-}
-
-let teed = keys.forEach((elem,ind,arr) => {
-    console.log(arr)
-
-    // now if the element of the keys of the object is another object
-    // we will wanna go through it
-    // and otherwise we will keep doing this until the end
-    console.log(elem, 'elem')
-
-    if (typeof obj[elem] == 'object') {
-        // is this key equal to a value though?
-        if (elem === value) {
-       
-           return 1 + countKeysInObj(obj[elem], value)
-        }
-        else {
-        
-          return 0 +  countKeysInObj(obj[elem], value)
-        }
     }
 
-    else {
-      
-        // else we don't have an object.. so we can have a base case here where 
-        // we return numbers..
-        if (elem === value) {
-            console.log('doin a return', elem, value)
-            return 1 + countKeysInObj(obj[elem], value)
-        }
-        else {
-        
-            return 0 + countKeysInObj(obj[elem], value)
-        }
-    }
+    console.log(countKeysInObj(obj, 'e'))
 
-
-})
-
-
-}
-
-
-
-
-   
-
-
-
-//var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y': 'e' };
-// keys are e, t, r, p
-
-    console.log(countKeysInObj(obj, 'r'))
-  //  console.log(countKeysInObj(obj, 'e'))
 
 
 
