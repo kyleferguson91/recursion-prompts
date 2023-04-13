@@ -27,6 +27,8 @@ function fib(n, sum = 0) {
         //  console.log(sum)
     
         }
+        // we can return the SUM all the way up since we have the next number already..
+
         return value3
       }
        

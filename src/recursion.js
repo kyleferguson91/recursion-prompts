@@ -1002,7 +1002,8 @@ var countValuesInObj2 = function (obj, value) {
     // something one step simpler is an object one level closer to the end,
     // which is why we iterate through keyus
     for (let keys in obj) {
-        console.log(keys)
+        conso
+        le.log(keys)
         // if the key we reach is another object, recurse again
         // check if the value (obj[keys]) equals ours
         if (obj[keys] == value) {
