@@ -697,7 +697,9 @@ var createArray = function (str) {
     else {
         // otherwise reduce the string length one character at a time..
         // call the function with the string shorter
-
+        // and solve the more complex probelm..
+        // which is creating an array out of each character..
+        // combined with the step calls 
         return [str[0]].concat(createArray(str.slice(1)))
     }
 
@@ -1069,6 +1071,7 @@ var countValuesInObj = function (obj, value) {
 
 
 
+
 //console.log(countValuesInObj(obj, 'e'))
 
 
@@ -1151,6 +1154,19 @@ var fibonacci = function (n) {
     // then we return an array that consists of that expanded, so 0,1
     // added on arr[0] + arr[1]  for n = 2
     // thus [0,1,1]
+
+    // new array is equal to WHATEVER THE CURRENT ONE IS plus the 
+    // SUM OF THE LAST AND SECOND LAST VALUES.. starting
+    // FROM A BASELINE OF [0,1]
+    // this is what we RETURN from each recursive call
+    // GROWING BIGGER BY ONE WITH EACH CALLL EACH CALL
+    // we reach the base case by making problem simpler each time, 
+    // smaller n-1 calls for array.. 
+    // eventually we get an array and can deduce values
+    // from the hardcoded [0,1]
+    // we make it ONE STEP SIMPLER with this and we 
+    // solve the MORE COMPLEX problem with the addition of the last
+    // two values in the return statement
     return [...arr, arr[n - 1] + arr[n - 2]]
 
 };
