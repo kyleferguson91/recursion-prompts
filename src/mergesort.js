@@ -1,4 +1,4 @@
-let dog = [7, 4, 12, 7, 23, 55]
+let dog = [7, 4, 20, 7, 23, 1,2,3]
 
 
 function mergesort(arr, sorting) {
@@ -20,6 +20,7 @@ function mergesort(arr, sorting) {
         }
     }
     // this if we divide off, eg, 1,2,3 becomes 12, 3
+    // how we merge them for upwards in the chain..
     else if (left.length == 1 && right.length != 1) {
  
 let results = []
@@ -29,21 +30,51 @@ let results = []
         // is left[0] less than right[0]
         // this is easy case then we can just append the left on the 
         // end of the right and return that array
+        
+        // sort the right list.. before appending to left..
+     right =    right[0] <= right[1] ? right : right.reverse()
+        
+// left is only one value..
+let j = 0
+let result = []
+while (j < right.length) {
+    if (left[0] <= right[0]) {
+        // left is lower, append it to the front of array and be done
+        return [left[0]].concat(right)
+    }
 
-right = right.sort((a,b) => {
-    return a-b
-})
+    // else what if left is larger or equal to end value of right
+    if (left[0] >= right[right.length-1]) {
+      return right.concat(left[0])
+    }
 
+    else if (left[0] >= right[j]) {
+console.log('greatah', left, right)
+results = results.concat(right[j])
+        
+    }
+    else {
+        // push left to result..
+        result = result.concat(left[0])
+        // and push whatever values of right remain..
+        while (j < right.length) {
+            results = results.concat(right[j])
+            j++
+
+        }
+        return results
+    }
+    j++
+}
+
+
+     console.log(left, right, 'sorted')
         return [left[0]].concat(mergesort(right)).sort((a,b) => {
             return a-b
         })
 
     }
-    // even other way 
-    else if (left.length != 1 && right.length == 1) {
-        console.log('bees right 1')
-        return [right[0]].concat(mergesort(left))
-    }
+
     // otherwise both lengths are greater than 1..
     else if (left.length > 1 && right.length > 1) {
 
@@ -73,6 +104,7 @@ while (i < leftvalues.length && j < rightvalues.length) {
         
         if (j + 1 == rightvalues.length) {
             while (1 < leftvalues.length) {
+                
                 results = results.concat(leftvalues[i])
                 i++
             }
@@ -98,7 +130,7 @@ while (i < leftvalues.length && j < rightvalues.length) {
 }
 console.log(leftvalues, rightvalues, 'titties')
 
-console.log(leftvalues, rightvalues, '12')
+console.log(leftvalues, rightvalues, '12', results)
    
 return results
 }
