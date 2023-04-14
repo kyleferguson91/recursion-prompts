@@ -1,4 +1,4 @@
-let dog = [7, 4, 20, 7, 23, 1,2,3]
+let dog = [7, 4, 20, 7, 23, 1,2]
 
 
 function mergesort(arr, sorting) {
